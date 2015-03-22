@@ -1,8 +1,9 @@
 # Given Matrix inversion is usually a costly computation
 # there is some benefit to caching the inverse of a matrix rather than computing it repeatedly
-# makecachematrix creates an invertible matrix which is then cached. When called again the cached values are used
+# makecachematrix creates a "matrix" object which is then cached. When called again the cached values are used
 # if the matrix is the same as that cached
 
+# NB: The supplied matrix must be invertible
 # sample use
 # > x = rbind(c(2, 4), c(4, 2))
 # > m = makeCacheMatrix(x)
@@ -17,6 +18,10 @@
 
 # if cachesolve(m) is run again with the matrix m unchanged it recalls the results from cache
 # and prints "retrieving cached data"
+
+# This function computes the inverse of the special "matrix" returned by makeCacheMatrix above. 
+# If the inverse has already been calculated (and the matrix has not changed), then the 
+# cachesolve should retrieve the inverse from the cache.
 
 makeCacheMatrix <- function(x = matrix()) {
   m<-NULL
